@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Para vos 💖</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            overflow: hidden;
+            animation: fondoCambiante 15s infinite alternate;
+        }
+
+        @keyframes fondoCambiante {
+            0% { background: #ffd6e7; }
+            25% { background: #fff0f5; }
+            50% { background: #ffe0f0; }
+            75% { background: #ffd1ec; }
+            100% { background: #ffb6d8; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 70px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: aparecer 1.5s ease forwards;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin: 0;
+            color: #ff4da6;
+            animation: subir 2s ease forwards;
+            display: inline-block;
+            transform-origin: center;
+            animation: latido 1s infinite;
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        p {
+            font-size: 26px;
+            margin-top: 20px;
+            color: #ff66b3;
+            animation: aparecerTexto 3s ease forwards;
+        }
+
+        @keyframes aparecer { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+        @keyframes subir { 0% { transform: translateY(50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        @keyframes aparecerTexto { from { opacity: 0; } to { opacity: 1; } }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: flotar linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: 10px; top: 0; }
+
+        @keyframes flotar {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>💖 Te amo pollito 💖</h1>
+        <p>Siempre vos 🫶🏻</p>
+    </div>
+
+    <script>
+        function crearCorazon() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            const size = 10 + Math.random() * 20;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(crearCorazon, 300);
+    </script>
+</body>
+</html>
